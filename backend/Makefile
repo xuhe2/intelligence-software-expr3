@@ -5,3 +5,6 @@ BIN_DIR=./bin
 
 build:
 	go build -o $(BIN_DIR)/main ${MAIN_FILE}
+
+env:
+	docker compose up -d
