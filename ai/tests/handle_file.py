@@ -12,6 +12,6 @@ with open(file_path, "rb") as file:
     files = {"file": file}
     response = req.post(url, files=files)
     if response.json()['filename'] == file_name:
-        print_test_result(True)
+        print_test_result(True, response.text)
     else:
         print_test_result(False, "filename is not correct")
