@@ -6,6 +6,7 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/xuhe2/intelligence-software-expr3/controllers"
+	"github.com/xuhe2/intelligence-software-expr3/initializers"
 )
 
 func main() {
@@ -24,4 +25,9 @@ func main() {
 	r.GET("/",controllers.Root)
 
 	r.Run(":3001") // 监听并在 0.0.0.0:3001 上启动服务
+}
+
+func init(){
+	initializers.LoadEnvVar(".env")
+	initializers.ConnectToDB()
 }
