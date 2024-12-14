@@ -7,10 +7,14 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/xuhe2/intelligence-software-expr3/controllers"
 	"github.com/xuhe2/intelligence-software-expr3/initializers"
+	"github.com/xuhe2/intelligence-software-expr3/middlewares"
 )
 
 func main() {
 	r := gin.Default()
+
+	r.Use(middlewares.JWTMiddleware)
+
 	// CORS
 	// 配置 CORS 中间件
 	r.Use(cors.New(cors.Config{
