@@ -12,6 +12,12 @@ func Login(c *gin.Context) {
 		Username string `json:"username"`
 		Password string `json:"password"`
 	}
+	if err := c.BindJSON(&body); err != nil {
+		c.JSON(400, gin.H{
+			"error": "Invalid request body",
+		})
+		return
+	}
 	var user models.User
 	if err := initializers.Db.Where(&models.User{Username: body.Username, Password: body.Password}).First(&user).Error; err != nil {
 		c.JSON(401, gin.H{
