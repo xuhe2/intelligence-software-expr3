@@ -8,3 +8,6 @@ build:
 
 env:
 	docker compose up -d
+
+test:
+	go test -v -coverprofile=coverage.out ./...
