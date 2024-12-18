@@ -28,6 +28,7 @@ func main() {
 
 	r.GET("/", controllers.Root)
 	r.POST("/register", controllers.Register)
+	r.POST("/login", controllers.Login)
 
 	r.Run(":3001") // 监听并在 0.0.0.0:3001 上启动服务
 }

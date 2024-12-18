@@ -7,13 +7,21 @@ import (
 )
 
 func Register(c *gin.Context) {
-	var body struct{
+	var body struct {
 		Username string `json:"username" binding:"required"`
 		Password string `json:"password" binding:"required"`
 	}
 	if err := c.ShouldBindJSON(&body); err != nil {
 		c.JSON(400, gin.H{"error": err.Error()})
 	}
+	// check if user already exists
+	var existingUser models.User
+	initializers.Db.Where(&models.User{Username: body.Username}).First(&existingUser)
+	if existingUser.ID != 0 {
+		c.JSON(400, gin.H{"error": "User already exists"})
+		return
+	}
+
 	// TODO: register user
 	user := models.User{
 		Username: body.Username,
