@@ -20,6 +20,10 @@
                     </template>
                 </el-input>
             </el-form-item>
+            <!-- 跳转去注册界面 -->
+            <el-form-item>
+                <el-button type="text" style="float: right;" @click="$router.push('/register')">没有账号？去注册</el-button>
+            </el-form-item>
             <el-form-item>
                 <el-button type="primary" style="width:100%;" @click="login">登录</el-button>
             </el-form-item>
