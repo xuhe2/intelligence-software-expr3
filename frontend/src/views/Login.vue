@@ -33,6 +33,7 @@ import { User, Lock } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 
 import backendAPI from '../api/backend';
+import { encryptPassword } from '../utils/crypt';
 
 const loginRules = ref({
     username: [{ required: true, trigger: 'blur', message: '请输入您的账号' }],
@@ -45,6 +46,7 @@ const loginForm = reactive({
 })
 
 const login = () => {
+    loginForm.password = encryptPassword(loginForm.password)
     backendAPI.post('/login', {
         username: loginForm.username,
         password: loginForm.password
