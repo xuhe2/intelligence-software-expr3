@@ -30,6 +30,7 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import { User, Lock } from '@element-plus/icons-vue'
+import { ElMessage } from 'element-plus'
 
 import backendAPI from '../api/backend';
 
@@ -44,11 +45,18 @@ const loginForm = reactive({
 })
 
 const login = () => {
-    backendAPI.post('/login', loginForm).then(res => {
-        console.log(res)
+    backendAPI.post('/login', {
+        username: loginForm.username,
+        password: loginForm.password
+    }).then(res => {
+        ElMessage({
+            message: "login success",
+            type: 'success',
+            plain: true,
+        })
     }).catch(err => {
         ElMessage({
-            message: err["error"],
+            message: err.response.data["error"],
             type: 'error',
             plain: true,
         })
