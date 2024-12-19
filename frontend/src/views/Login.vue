@@ -49,6 +49,8 @@ const login = () => {
         username: loginForm.username,
         password: loginForm.password
     }).then(res => {
+        let jwt = res.data["jwt"]
+        localStorage.setItem('jwt', jwt)
         ElMessage({
             message: "login success",
             type: 'success',
