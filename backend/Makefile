@@ -4,7 +4,7 @@ BIN_DIR=./bin
 .PHONY: build
 
 build:
-	go build -o $(BIN_DIR)/main ${MAIN_FILE}
+	go build -ldflags '-linkmode "external" -extldflags "-static"' -o $(BIN_DIR)/main ${MAIN_FILE}
 
 env:
 	docker compose up -d
