@@ -18,3 +18,8 @@ services:
       POSTGRES_PASSWORD: intelligence-software-expr3
     ports:
       - 5432:5432
+    networks:
+      - intelligence-software
+
+networks: # 关键：在这里定义网络
+  intelligence-software: # 网络名称
